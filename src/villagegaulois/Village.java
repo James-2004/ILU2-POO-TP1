@@ -10,7 +10,6 @@ public class Village {
 	private Gaulois[] villageois;
 	private int nbVillageois = 0;
 	private Marche marche;
-	private Etal etal;
 
 	public Village(String nom, int nbVillageoisMaximum, int nbEtalsMarche) {
 		this.nom = nom;
@@ -57,7 +56,7 @@ public class Village {
                 + chef.getNom() + ".\n");
     } else {
         chaine.append("Au village du chef " + chef.getNom()
-                + " vivent les légendaires gaulois :\n");
+                + " vivent les legendaires gaulois :\n");
         for (int i = 0; i < nbVillageois; i++) {
             chaine.append("- " + villageois[i].getNom() + "\n");
         }
@@ -111,27 +110,30 @@ public class Village {
     }
 
 			if (nbEtalVide > 0) {
-				result.append("Il reste ").append(nbEtalVide).append(" étals non utilisés dans le marché.\n");
+				result.append("Il reste ").append(nbEtalVide).append(" etals non utilises dans le marche.\n");
     }
 
 			return result.toString();
 			
 		}
-
+		public Etal[] getEtals() {
+			// TODO Auto-generated method stub
+			return etals;
+		}
 	} 
 	public String installerVendeur(Gaulois vendeur, String produit, int nbProduit) {
 		int indiceEtalLibre = marche.trouverEtalLibre();
 		if (indiceEtalLibre != -1) {
 			marche.utiliserEtal(indiceEtalLibre, vendeur, produit, nbProduit);
-			return vendeur.getNom() + " vend " + nbProduit + " " + produit + " à l'étal " + indiceEtalLibre + ".";
+			return vendeur.getNom() + " vend " + nbProduit + " " + produit + " à l'etal " + indiceEtalLibre + ".";
 		} else {
-			return "Aucun étal disponible pour installer le vendeur " + vendeur.getNom() + ".";
+			return "Aucun etal disponible pour installer le vendeur " + vendeur.getNom() + ".";
     }
 }
 	public String rechercherVendeursProduit(String produit) {
     StringBuilder result = new StringBuilder();
     result.append("Vendeurs de ").append(produit).append(" : ");
-    for (Etal etal : etal.getVendeur()) {
+    for (Etal etal : marche.getEtals()) {
         if (etal.isEtalOccupe() && etal.contientProduit(produit)) {
             result.append(etal.getVendeur().getNom()).append(", ");
         }
@@ -145,9 +147,9 @@ public class Village {
     Etal etal = marche.trouverVendeur(vendeur);
     if (etal != null) {
         etal.libererEtal();
-        return vendeur.getNom() + " quitte l'étal.";
+        return vendeur.getNom() + " quitte l etal.";
     } else {
-        return vendeur.getNom() + " n'est pas un vendeur dans le marché.";
+        return vendeur.getNom() + " n'est pas un vendeur dans le marche.";
     }
 }
 	public String afficherMarche() {
