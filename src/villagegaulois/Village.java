@@ -157,6 +157,11 @@ public class Village {
 }
 
 	public class VillageSansChefException extends Exception {
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 4464454269726694137L;
+
 		public VillageSansChefException(String message) {
 			super(message);
     }

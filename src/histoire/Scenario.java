@@ -4,6 +4,7 @@ import personnages.Chef;
 import personnages.Druide;
 import personnages.Gaulois;
 import villagegaulois.Etal;
+import villagegaulois.Etal.EtalNonOccupeException;
 import villagegaulois.Village;
 import villagegaulois.Village.VillageSansChefException;
 
@@ -34,13 +35,18 @@ public class Scenario {
 		System.out.println(village.installerVendeur(obelix, "menhirs", 2));
 		System.out.println(village.installerVendeur(druide, "fleurs", 10));
 
-//		System.out.println(village.rechercherVendeursProduit("fleurs"));
-//		Etal etalFleur = village.rechercherEtal(bonemine);
-//		System.out.println(etalFleur.acheterProduit(10, abraracourcix));
-//		System.out.println(etalFleur.acheterProduit(15, obelix));
-//		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
-//		System.out.println(village.partirVendeur(bonemine));
-//		System.out.println(village.afficherMarche());
+		System.out.println(village.rechercherVendeursProduit("fleurs"));
+		Etal etalFleur = village.rechercherEtal(bonemine);
+		System.out.println(etalFleur.acheterProduit(10, abraracourcix));
+		System.out.println(etalFleur.acheterProduit(15, obelix));
+		System.out.println(etalFleur.acheterProduit(15, assurancetourix));
+		try {
+			System.out.println(village.partirVendeur(bonemine));
+		} catch (EtalNonOccupeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.println(village.afficherMarche());
 	}
 
 }
